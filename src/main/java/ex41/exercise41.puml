@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    Names : List
+
+    + main()
+    + populateListFromFile()
+    + sortList()
+}
+
+class Name {
+    - firstName: String
+    - lastName: String
+
+    + addName()
+    + getNameFromFile()
+    + printName()
+}
+
+
+
+App <|-- Name
+
+@enduml

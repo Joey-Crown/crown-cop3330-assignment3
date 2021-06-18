@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    Products: ProductList
+
+    getUserInput()
+    compareString()
+}
+
+class Product {
+    - name : String
+    - price : double
+    - quantity : int
+
+
+    + printProduct()
+}
+
+class ProductList {
+
+    - products : List<Product>
+
+    + getProductsFromJson()
+    + listSize()
+}
+
+App <|-- Product
+App <|-- ProductList
+Product --|> ProductList
+@enduml

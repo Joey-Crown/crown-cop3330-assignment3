@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    Salaries : List<Salary>
+
+    printSalaryData()
+    getDataFromFile()
+}
+
+class Salary {
+    - firstName : String
+    - lastName : String
+    - salary : int
+
+    printSalary()
+    addSalary()
+}
+
+App <|-- Salary
+@enduml

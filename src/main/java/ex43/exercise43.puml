@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class App {
+    website : Website
+
+    + createWebsite()
+    + userInput()
+}
+
+class Website {
+    - siteName : string
+    - author : string
+    - js : string
+    - CSS : string
+
+    + createWebsiteDirectory()
+    + createWebsiteHTML()
+    + createWebsiteCSS()
+    + createWebsiteJS()
+}
+
+App <|--- Website
+@enduml
