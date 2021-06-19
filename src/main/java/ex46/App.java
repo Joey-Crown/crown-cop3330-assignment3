@@ -6,8 +6,11 @@ package ex46;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 /* Exercise 46 - Word Frequency Finder
 Knowing how often a word appears in a sentence or block of text is helpful for creating word clouds and other types of
@@ -70,6 +73,15 @@ public class App {
     }
 
     public static void wordCounter(String data){
+        String[] wordArray = data.split(" ");
+        Map<String, Integer> wordMap = new HashMap<String, Integer>();
+
+        for (int i = 0; i < wordArray.length; i++) {
+
+            if (wordMap.containsKey(wordArray[i])) {
+
+            }
+        }
 
     }
 }
