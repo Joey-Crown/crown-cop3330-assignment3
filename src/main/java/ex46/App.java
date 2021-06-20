@@ -79,7 +79,7 @@ public class App {
         for (int i = 0; i < wordArray.length; i++) {
 
             if (wordMap.containsKey(wordArray[i])) {
-
+                wordMap.get(wordArray[i])++;
             }
         }
 
