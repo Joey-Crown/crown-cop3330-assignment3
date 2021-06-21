@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /* Exercise 46 - Word Frequency Finder
@@ -50,38 +51,56 @@ public class App {
     /*
     pseudocode:
     Open file and read file to string
-    use split method to split up string by ' ' into words
-
+    use split method to split up string by ' ' into an array wof strings
+    Loop through the array, creating a hash map where the key is the word, and the value is the word frequency
+    iterate through hash map to create a list of objects of class 'Word'
+    Sort list of Words using comparator that sorts in descending order by word frequency
+    Print words and frequency, replacing the number of word instances with an asterisk('*') for every instance
      */
 
-    public static void main(String[] args) {
-        String path = "src/main/java/ex46/exercise46_input.txt";
-        String data = readFile(path);
-        if (data != null) {
+    static List<Word> words;
 
+    public static void main(String[] args) {
+        String path = "src/main/java/ex46/exercise46_input.txt";    // path to input file
+        String data = readFile(path);                               // read file and store all words to a string
+        if (data != null) {
+            Map<String, Integer> wordMap = wordCounter(data);       // create map of key: word and value: frequency
+            words = Word.mapToWordList(wordMap);                    // convert map to list for easier sorting
+            words = Word.sortList(words);                           // sort list of Word objects by frequency
+            System.out.println(Word.printWordFrequency(words));     // print all words and frequencies in 'bar graph' format
         }
     }
 
+    // reads file and stores all text data in a string
     public static String readFile(String path){
         File file = new File(path);
         try {
             return new String(Files.readAllBytes(Paths.get(path)));
         } catch (IOException e) {
-            System.out.println("Epic fail");
+            System.out.println("Failure reading file.");
         }
         return null;
     }
 
-    public static void wordCounter(String data){
+    // converts string of words into string array
+    // creates a hash map of word frequency Map<word, frequency>
+    public static Map<String, Integer> wordCounter(String data){
+        data = data.replaceAll("\n", " "); // formatting string for splitting into array
+        data = data.replaceAll("\r", "");
         String[] wordArray = data.split(" ");
+
         Map<String, Integer> wordMap = new HashMap<String, Integer>();
 
         for (int i = 0; i < wordArray.length; i++) {
 
             if (wordMap.containsKey(wordArray[i])) {
-                wordMap.get(wordArray[i])++;
+                wordMap.put(wordArray[i], wordMap.get(wordArray[i]) + 1);
+            } else {
+                wordMap.put(wordArray[i], 1);
             }
         }
 
+        return wordMap;
     }
+
 }

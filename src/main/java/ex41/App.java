@@ -75,7 +75,7 @@ public class App {
     public static void main(String[] args) {
         if(!populateListFromFile("src/main/java/ex41/exercise41_output.txt"))
             System.out.println("Problem getting names from file");
-        sortList();
+        names = sortList(names);
         printAllNames();
     }
 
@@ -88,19 +88,19 @@ public class App {
 
             while(readFile.hasNextLine()) {
                 String nameStr = Name.getNameFromFile(readFile);
-                Name newName = Name.addName(names, nameStr);
-                if (newName == null) {
-                    return false; // return false in case of null object
-                } else names.add(newName);
+                Name newName = Name.addName(nameStr);
+                names.add(newName);
             }
         } catch (FileNotFoundException e){
             System.out.println("File not found.");
+            return false;
         }
-        return true;
+
+        return !names.isEmpty();
     }
 
     // use comparator method to sort list of names by last name
-    public static void sortList() {
+    public static List<Name> sortList(List<Name> names) {
         Comparator<Name> sortLastName = new Comparator<Name>() {
             public int compare(Name obj1, Name obj2) {
                 if (obj1.lastName.equals(obj2.lastName)) { // if last names are equal then sort by first name
@@ -110,6 +110,7 @@ public class App {
             }
         };
         names.sort(sortLastName);
+        return names;
     }
 
     // prints information about list and all list entries using printName()

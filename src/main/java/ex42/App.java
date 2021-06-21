@@ -63,13 +63,16 @@ public class App {
     static List<Salary> salaries = new ArrayList<Salary>();
 
     public static void main(String[] args) {
-        getSalaryFromFile("src/main/java/ex42/exercise42_input.txt"); // takes file dir and populates list
-        printSalaryData(); //prints salary data
+        if (getSalaryFromFile("src/main/java/ex42/exercise42_input.txt")) { // takes file dir and populates list
+            printSalaryData(); //prints salary data
+        } else {
+            System.out.println("Unable to print salaries");
+        }
     }
 
     // takes file name and calls Salary.addSalary() for every line of the file
     // adds returned Salary object to List 'salaries'
-    public static void getSalaryFromFile(String fileName) {
+    public static boolean getSalaryFromFile(String fileName) {
         try {
             File file = new File(fileName);
             Scanner readFile = new Scanner(file);
@@ -78,7 +81,9 @@ public class App {
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
+            return false;
         }
+        return true;
     }
 
     // loops length of list 'salaries' and calls Salaries.printSalary which returns formatted string

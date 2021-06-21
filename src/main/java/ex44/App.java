@@ -88,7 +88,7 @@ public class App {
             String productName = userInput();
 
             // take user input and find product of matching name
-            Product search = compareString(productName, listOfProducts);
+            Product search = compareString(productName);
 
             // print result
             System.out.println(Product.printProduct(search));
@@ -111,7 +111,7 @@ public class App {
 
     // compares user given name to the existing list of products and returns a match if found
     // calls userInput() again if there is no match and continues looping
-    public static Product compareString(String productName, ProductList products) {
+    public static Product compareString(String productName) {
         while (true) {
             for (int i = 0; i < listOfProducts.products.size(); i++) {
                 if (productName.equals(listOfProducts.products.get(i).name)) {

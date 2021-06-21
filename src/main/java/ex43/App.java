@@ -46,12 +46,17 @@ public class App {
      */
     public static void main(String[] args) {
         Website website = userInput();
-        createWebsite("src/main/java/ex43", website);
+        if(createWebsite("src/main/java/ex43", website)) {
+            System.out.println("Website successfully created.");
+        } else {
+            System.out.println("Failed to create website. Check console for errors.");
+        }
     }
 
-    public static void createWebsite(String websiteDir, Website website) {
+    public static boolean createWebsite(String websiteDir, Website website) {
         String directory = websiteDir + "/website/" + website.siteName;
         File file = new File(directory);
+        boolean status = true;      // variable set to false upon error
 
         // creates direct and if successful creates 'index.html' + css/js folders
         if(Website.createWebsiteDirectory(file)) {
@@ -61,20 +66,30 @@ public class App {
             System.out.println("Created ./website/" + website.siteName + "/index.html");
 
             if(website.js.equals("y")) {
-                if(Website.createWebsiteJS(directory, website))
+                if(Website.createWebsiteJS(directory)) {
                     System.out.println("Created ./website/" + website.siteName + "/js");
-                else System.out.println("Failed to create JavaScript directory");
+                }
+                else {
+                    System.out.println("Failed to create JavaScript directory");
+                    status = false;
+                }
             }
             if(website.css.equals("y")) {
-                if(Website.createWebsiteCSS(directory, website))
+                if(Website.createWebsiteCSS(directory)) {
                     System.out.println("Created ./website/" + website.siteName + "/css");
-                else System.out.println("Failed to create CSS directory");
+                }
+                else {
+                    System.out.println("Failed to create CSS directory");
+                    status = false;
+                }
             }
 
         } else {
             System.out.println("Failed to create website directory");
+            status = false;
         }
 
+        return status;
     }
 
     // takes user input and creates Website object
