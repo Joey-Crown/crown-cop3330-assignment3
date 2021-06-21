@@ -6,8 +6,14 @@ class App {
     - outputFile : String
 
     + getUserInput()
+}
+
+class FileUtilities {
+
     + createFile()
     + readFromFile()
     + writeToFile()
 }
+
+App <|-- FileUtilities
 @enduml
