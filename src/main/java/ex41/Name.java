@@ -19,7 +19,7 @@ public class Name {
     }
 
     // takes string and splits it into first + last name
-    public static Name addName(List<Name> list, String name) {
+    public static Name addName(String name) {
         String [] strArr = name.split(", ");
 
         Name obj = new Name(strArr[1], strArr[0]);

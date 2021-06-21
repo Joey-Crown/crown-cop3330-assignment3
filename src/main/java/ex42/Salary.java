@@ -25,11 +25,11 @@ public class Salary {
         String data = readFile.nextLine();
         String[] strArr = data.split(",");
         int dollars = Integer.parseInt(strArr[2]);
-        Salary newSalary = new Salary(strArr[0], strArr[1], dollars);
+        Salary newSalary = new Salary(strArr[1], strArr[0], dollars);
         return newSalary;
     }
 
     public static String printSalary(Salary salary) {
-        return String.format("%-9s|%-9s|%-6d", salary.firstName, salary.lastName, salary.salary);
+        return String.format("%-9s|%-9s|%-6d", salary.lastName, salary.firstName, salary.salary);
     }
 }

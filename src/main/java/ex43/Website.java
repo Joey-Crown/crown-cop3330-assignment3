@@ -59,12 +59,12 @@ public class Website {
         }
     }
 
-    public static boolean createWebsiteCSS(String directory, Website website) {
+    public static boolean createWebsiteCSS(String directory) {
         File file = new File(directory + "/css");
         return file.mkdir();
     }
 
-    public static boolean createWebsiteJS(String directory, Website website) {
+    public static boolean createWebsiteJS(String directory) {
         File file = new File(directory + "/js");
         return file.mkdir();
     }

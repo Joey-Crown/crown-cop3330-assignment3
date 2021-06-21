@@ -3,6 +3,21 @@
 
 class App {
 
+    words : List<Word>
+
+    readFromFile()
+    wordCounter()
+
 }
 
+class Word {
+    - word : String
+    - frequency : int
+
+    + mapToWordList()
+    + sortList()
+    + printWordFrequency()
+}
+
+App <|-- Word
 @enduml
